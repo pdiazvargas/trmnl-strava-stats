@@ -46,5 +46,5 @@ custom_fields:
   category: sports,fitness
   description: Shows your most recent ride and a Monday–Sunday weekly cycling summary, pulled from Strava. Rides only (no runs, swims, or other activity types). Not affiliated with, endorsed by, or sponsored by Strava.
 name: Strava Stats
-description: Most recent ride + weekly (Mon–Sun) cycling summary from Strava.
+description: Last ride + weekly cycling summary
 refresh_interval: 15
