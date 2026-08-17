@@ -43,7 +43,7 @@ custom_fields:
   name: About This Plugin
   field_type: author_bio
   email_address: pedrodiazvargas@gmail.com
-  category: sports,fitness
+  category: sports,entertainment
   description: Shows your most recent ride and a Monday–Sunday weekly cycling summary, pulled from Strava. Rides only (no runs, swims, or other activity types). Not affiliated with, endorsed by, or sponsored by Strava.
 name: Strava Stats
 description: Last ride + weekly cycling summary
