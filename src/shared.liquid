@@ -4,6 +4,11 @@
   from transform.js's return value, which TRMNL merges in as top-level
   variables; the `| default: data.x` fallback covers the (unlikely) case it
   instead nests them under a top-level `data` key.
+
+  distance_unit (custom_fields.distance_unit) is read in transform.js as
+  input.custom_fields and applied there — every distance/elevation/speed
+  string above is already formatted in that unit by the time it reaches
+  this markup, so the raw custom field value itself is never read here.
 {%- endcomment -%}
 
 {%- assign most_recent = mostRecent | default: data.mostRecent -%}

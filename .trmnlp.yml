@@ -10,48 +10,124 @@ watch:
 custom_fields:
   distance_unit: Miles
 
-# override variables — mock Strava data shaped like transform.js's return
-# value, so `trmnlp serve` renders something meaningful without needing a
-# live OAuth connection during local preview.
+# override variables — since strategy: polling always attempts a live poll
+# (which fails locally with no OAuth token), we inject `data` here instead:
+# trmnlp deep-merges these into the payload it hands to transform.js, and
+# transform.js's `activitiesFromInput` picks up a top-level `data` array
+# exactly like it would from a real `{ data: [...] }`-wrapped poll response.
+# This is real ride data (pulled from the connected Strava account) shaped
+# like Strava's raw /athlete/activities response, so it exercises transform.js
+# itself — not just the Liquid templates — the same as a live poll would.
 variables:
   trmnl: {}
-  hasMostRecent: true
-  mostRecent:
-    id: 1
-    name: Morning Ride
-    startDateLocal: '2026-08-15T07:28:37'
-    distance: 38.6 mi
-    movingTime: 2h 13m
-    elevationGain: 2142 ft
-    averageSpeed: 17.5 mph
-    averageWatts: 149
-    kudos: 7
-    achievementCount: 4
-  hasWeekly: true
-  weekly:
-    rideCount: 3
-    distance: 97.2 mi
-    movingTime: 5h 24m
-    elevationGain: 4200 ft
-    mondayDate: '2026-08-10'
-    sundayDate: '2026-08-16'
-    rides:
-      - id: 1
-        name: Morning Ride
-        startDateLocal: '2026-08-15T07:28:37'
-        distance: 38.6 mi
-        movingTime: 2h 13m
-        elevationGain: 2142 ft
-      - id: 2
-        name: Morning Ride
-        startDateLocal: '2026-08-14T10:19:07'
-        distance: 30.1 mi
-        movingTime: 1h 40m
-        elevationGain: 1223 ft
-      - id: 3
-        name: Morning Ride
-        startDateLocal: '2026-08-12T10:43:29'
-        distance: 28.5 mi
-        movingTime: 1h 31m
-        elevationGain: 860 ft
-  distanceUnit: Miles
+  data:
+    - id: "19753153227"
+      name: Morning Ride
+      sport_type: Ride
+      start_date_local: "2026-08-15T07:28:37"
+      distance: 62058.6
+      moving_time: 7968
+      total_elevation_gain: 653
+      average_speed: 7.78847891566265
+      kudos_count: 7
+      achievement_count: 7
+      timezone: "(GMT-04:00) America/New_York"
+    - id: "19740816078"
+      name: Morning Ride
+      sport_type: Ride
+      start_date_local: "2026-08-14T10:19:07"
+      distance: 48425.5
+      moving_time: 6007
+      total_elevation_gain: 373
+      average_speed: 8.061511569835192
+      kudos_count: 7
+      achievement_count: 22
+      timezone: "(GMT-04:00) America/New_York"
+    - id: "19713309291"
+      name: Morning Ride
+      sport_type: Ride
+      start_date_local: "2026-08-12T10:43:29"
+      distance: 45028.9
+      moving_time: 5489
+      total_elevation_gain: 262
+      average_speed: 8.20347968664602
+      kudos_count: 8
+      achievement_count: 67
+      timezone: "(GMT-04:00) America/New_York"
+    - id: "19655084147"
+      name: Morning Ride
+      sport_type: Ride
+      start_date_local: "2026-08-08T07:27:29"
+      distance: 61637
+      moving_time: 7795
+      total_elevation_gain: 645
+      average_speed: 7.9072482360487495
+      kudos_count: 14
+      achievement_count: 26
+      timezone: "(GMT-04:00) America/New_York"
+    - id: "19628841634"
+      name: Morning Ride
+      sport_type: Ride
+      start_date_local: "2026-08-06T09:45:24"
+      distance: 49891.2
+      moving_time: 6473
+      total_elevation_gain: 397.7
+      average_speed: 7.707585354549668
+      kudos_count: 11
+      achievement_count: 4
+      timezone: "(GMT-04:00) America/New_York"
+    - id: "19603064708"
+      name: Afternoon Ride
+      sport_type: Ride
+      start_date_local: "2026-08-04T14:53:30"
+      distance: 41840.6
+      moving_time: 5001
+      total_elevation_gain: 181
+      average_speed: 8.366446710657868
+      kudos_count: 9
+      achievement_count: 24
+      timezone: "(GMT-04:00) America/New_York"
+    - id: "19570444670"
+      name: Morning Ride
+      sport_type: Ride
+      start_date_local: "2026-08-02T07:50:26"
+      distance: 40674.6
+      moving_time: 5261
+      total_elevation_gain: 228
+      average_speed: 7.731343850978901
+      kudos_count: 18
+      achievement_count: 21
+      timezone: "(GMT-04:00) America/New_York"
+    - id: "19557260126"
+      name: Morning Ride
+      sport_type: Ride
+      start_date_local: "2026-08-01T09:19:43"
+      distance: 40271.5
+      moving_time: 5233
+      total_elevation_gain: 256
+      average_speed: 7.695681253583031
+      kudos_count: 10
+      achievement_count: 1
+      timezone: "(GMT-04:00) America/New_York"
+    - id: "19546640274"
+      name: Afternoon Ride
+      sport_type: Ride
+      start_date_local: "2026-07-31T13:50:48"
+      distance: 46670.4
+      moving_time: 6168
+      total_elevation_gain: 328
+      average_speed: 7.566536964980545
+      kudos_count: 12
+      achievement_count: 1
+      timezone: "(GMT-04:00) America/New_York"
+    - id: "19530585964"
+      name: Morning Ride
+      sport_type: Ride
+      start_date_local: "2026-07-30T09:48:30"
+      distance: 48655.3
+      moving_time: 6308
+      total_elevation_gain: 384
+      average_speed: 7.7132688649334185
+      kudos_count: 10
+      achievement_count: 10
+      timezone: "(GMT-04:00) America/New_York"
