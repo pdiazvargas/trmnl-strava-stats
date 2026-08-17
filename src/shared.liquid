@@ -36,6 +36,20 @@
 {%- capture title_bar_icon_svg -%}<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="5" cy="17" r="3" fill="none" stroke="#000" stroke-width="1.8"/><circle cx="19" cy="17" r="3" fill="none" stroke="#000" stroke-width="1.8"/><path fill="none" stroke="#000" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M5 17 10 8h6M10 8l3 9M13 17h6M16 8l3 9M8 5h3"/></svg>{%- endcapture -%}
 {%- assign title_bar_icon = title_bar_icon_svg | base64_encode -%}
 
+{%- comment -%}
+  Icon set for the "last ride" stat rows (time / elevation gain / avg
+  speed) — same single-stroke 24x24 style as title_bar_icon above, sized
+  via .image--adaptive so they inherit the screen's text-primary paint.
+{%- endcomment -%}
+{%- capture icon_time_svg -%}<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="#000" stroke-width="1.8"/><path fill="none" stroke="#000" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M12 7v5l3.5 2"/></svg>{%- endcapture -%}
+{%- assign icon_time = icon_time_svg | base64_encode -%}
+
+{%- capture icon_elevation_svg -%}<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="#000" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M3 18 9 8l4 6 2-3 6 7z"/></svg>{%- endcapture -%}
+{%- assign icon_elevation = icon_elevation_svg | base64_encode -%}
+
+{%- capture icon_speed_svg -%}<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="#000" stroke-width="1.8" stroke-linecap="round" d="M4 16a8 8 0 0 1 16 0"/><path fill="none" stroke="#000" stroke-width="1.8" stroke-linecap="round" d="M12 16 16 9"/><circle cx="12" cy="16" r="1.3" fill="#000" stroke="none"/></svg>{%- endcapture -%}
+{%- assign icon_speed = icon_speed_svg | base64_encode -%}
+
 {%- capture title_bar -%}
 <div class="title_bar">
   <img class="image" src="data:image/svg+xml;base64,{{ title_bar_icon }}">

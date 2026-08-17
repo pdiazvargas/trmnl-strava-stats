@@ -8,22 +8,31 @@
           <span class="title title--small">{{ most_recent.name | truncate: 28 }}</span>
           <span class="label label--small label--gray">{{ most_recent_date_label }}</span>
         </div>
-        <div class="grid grid--cols-2 gap--small">
-          <div class="flex flex--col">
-            <span class="value value--medium value--tnums">{{ most_recent.distance }}</span>
-            <span class="label label--small label--gray">DISTANCE</span>
+        <span class="value value--large value--tnums">{{ most_recent.distance }}</span>
+
+        <div class="divider"></div>
+
+        <div class="flex flex--col gap--xsmall w--full">
+          <div class="item">
+            <div class="icon"><img class="image--adaptive w--[6cqw] h--[6cqh]" src="data:image/svg+xml;base64,{{ icon_time }}"></div>
+            <div class="content flex flex--row flex--center-y gap--small w--full">
+              <span class="label label--small grow">Time</span>
+              <span class="value value--small value--tnums">{{ most_recent.movingTime }}</span>
+            </div>
           </div>
-          <div class="flex flex--col">
-            <span class="value value--medium value--tnums">{{ most_recent.movingTime }}</span>
-            <span class="label label--small label--gray">TIME</span>
+          <div class="item">
+            <div class="icon"><img class="image--adaptive w--[6cqw] h--[6cqh]" src="data:image/svg+xml;base64,{{ icon_elevation }}"></div>
+            <div class="content flex flex--row flex--center-y gap--small w--full">
+              <span class="label label--small grow">Elev Gain</span>
+              <span class="value value--small value--tnums">{{ most_recent.elevationGain }}</span>
+            </div>
           </div>
-          <div class="flex flex--col">
-            <span class="value value--medium value--tnums">{{ most_recent.elevationGain }}</span>
-            <span class="label label--small label--gray">ELEV GAIN</span>
-          </div>
-          <div class="flex flex--col">
-            <span class="value value--medium value--tnums">{% if most_recent.averageSpeed %}{{ most_recent.averageSpeed }}{% else %}—{% endif %}</span>
-            <span class="label label--small label--gray">AVG SPEED</span>
+          <div class="item">
+            <div class="icon"><img class="image--adaptive w--[6cqw] h--[6cqh]" src="data:image/svg+xml;base64,{{ icon_speed }}"></div>
+            <div class="content flex flex--row flex--center-y gap--small w--full">
+              <span class="label label--small grow">Avg Speed</span>
+              <span class="value value--small value--tnums">{% if most_recent.averageSpeed %}{{ most_recent.averageSpeed }}{% else %}—{% endif %}</span>
+            </div>
           </div>
         </div>
       {% else %}
