@@ -55,7 +55,7 @@
           <tbody>
             {% for ride in weekly.rides limit: 7 %}
               <tr>
-                <td class="pr--3 py--1"><span class="value value--xsmall value--tnums">{{ ride.startDateLocal | date: "%a" }}</span></td>
+                <td class="pr--3 py--1"><span class="label label--large">{{ ride.startDateLocal | date: "%a" }}</span></td>
                 <td class="py--1"><span class="label label--small">{{ ride.name | truncate: 20 }}</span></td>
                 <td class="py--1"><span class="label label--small text--gray-25">{{ ride.distance }}</span></td>
                 <td class="py--1"><span class="label label--small text--gray-25">{{ ride.movingTime }}</span></td>
