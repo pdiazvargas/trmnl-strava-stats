@@ -24,7 +24,7 @@ variables:
     - id: "19753153227"
       name: Morning Ride
       sport_type: Ride
-      start_date_local: "2026-08-15T07:28:37"
+      start_date_local: "2026-08-22T07:28:37"
       distance: 62058.6
       moving_time: 7968
       total_elevation_gain: 653
@@ -35,7 +35,7 @@ variables:
     - id: "19740816078"
       name: Morning Ride
       sport_type: Ride
-      start_date_local: "2026-08-14T10:19:07"
+      start_date_local: "2026-08-21T10:19:07"
       distance: 48425.5
       moving_time: 6007
       total_elevation_gain: 373
@@ -46,7 +46,7 @@ variables:
     - id: "19713309291"
       name: Morning Ride
       sport_type: Ride
-      start_date_local: "2026-08-12T10:43:29"
+      start_date_local: "2026-08-19T10:43:29"
       distance: 45028.9
       moving_time: 5489
       total_elevation_gain: 262
@@ -57,7 +57,7 @@ variables:
     - id: "19655084147"
       name: Morning Ride
       sport_type: Ride
-      start_date_local: "2026-08-08T07:27:29"
+      start_date_local: "2026-08-15T07:27:29"
       distance: 61637
       moving_time: 7795
       total_elevation_gain: 645
@@ -68,7 +68,7 @@ variables:
     - id: "19628841634"
       name: Morning Ride
       sport_type: Ride
-      start_date_local: "2026-08-06T09:45:24"
+      start_date_local: "2026-08-13T09:45:24"
       distance: 49891.2
       moving_time: 6473
       total_elevation_gain: 397.7
@@ -79,7 +79,7 @@ variables:
     - id: "19603064708"
       name: Afternoon Ride
       sport_type: Ride
-      start_date_local: "2026-08-04T14:53:30"
+      start_date_local: "2026-08-11T14:53:30"
       distance: 41840.6
       moving_time: 5001
       total_elevation_gain: 181
@@ -90,7 +90,7 @@ variables:
     - id: "19570444670"
       name: Morning Ride
       sport_type: Ride
-      start_date_local: "2026-08-02T07:50:26"
+      start_date_local: "2026-08-09T07:50:26"
       distance: 40674.6
       moving_time: 5261
       total_elevation_gain: 228
@@ -101,7 +101,7 @@ variables:
     - id: "19557260126"
       name: Morning Ride
       sport_type: Ride
-      start_date_local: "2026-08-01T09:19:43"
+      start_date_local: "2026-08-08T09:19:43"
       distance: 40271.5
       moving_time: 5233
       total_elevation_gain: 256
@@ -112,7 +112,7 @@ variables:
     - id: "19546640274"
       name: Afternoon Ride
       sport_type: Ride
-      start_date_local: "2026-07-31T13:50:48"
+      start_date_local: "2026-08-07T13:50:48"
       distance: 46670.4
       moving_time: 6168
       total_elevation_gain: 328
@@ -123,7 +123,7 @@ variables:
     - id: "19530585964"
       name: Morning Ride
       sport_type: Ride
-      start_date_local: "2026-07-30T09:48:30"
+      start_date_local: "2026-08-06T09:48:30"
       distance: 48655.3
       moving_time: 6308
       total_elevation_gain: 384

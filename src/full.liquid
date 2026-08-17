@@ -8,22 +8,31 @@
           <span class="title title--small">{{ most_recent.name | truncate: 28 }}</span>
           <span class="label label--small label--gray">{{ most_recent_date_label }}</span>
         </div>
-        <div class="grid grid--cols-2 gap--small">
-          <div class="flex flex--col">
-            <span class="value value--medium value--tnums">{{ most_recent.distance }}</span>
-            <span class="label label--small label--gray">DISTANCE</span>
+        <span class="value value--large value--tnums">{{ most_recent.distance }}</span>
+
+        <div class="divider"></div>
+
+        <div class="flex flex--col gap--xsmall w--full">
+          <div class="item">
+            <div class="icon"><img class="image--adaptive w--[6cqw] h--[6cqh]" src="data:image/svg+xml;base64,{{ icon_time }}"></div>
+            <div class="content flex flex--row flex--center-y gap--small w--full">
+              <span class="label label--small grow">Time</span>
+              <span class="value value--small value--tnums">{{ most_recent.movingTime }}</span>
+            </div>
           </div>
-          <div class="flex flex--col">
-            <span class="value value--medium value--tnums">{{ most_recent.movingTime }}</span>
-            <span class="label label--small label--gray">TIME</span>
+          <div class="item">
+            <div class="icon"><img class="image--adaptive w--[6cqw] h--[6cqh]" src="data:image/svg+xml;base64,{{ icon_elevation }}"></div>
+            <div class="content flex flex--row flex--center-y gap--small w--full">
+              <span class="label label--small grow">Elev Gain</span>
+              <span class="value value--small value--tnums">{{ most_recent.elevationGain }}</span>
+            </div>
           </div>
-          <div class="flex flex--col">
-            <span class="value value--medium value--tnums">{{ most_recent.elevationGain }}</span>
-            <span class="label label--small label--gray">ELEV GAIN</span>
-          </div>
-          <div class="flex flex--col">
-            <span class="value value--medium value--tnums">{% if most_recent.averageSpeed %}{{ most_recent.averageSpeed }}{% else %}—{% endif %}</span>
-            <span class="label label--small label--gray">AVG SPEED</span>
+          <div class="item">
+            <div class="icon"><img class="image--adaptive w--[6cqw] h--[6cqh]" src="data:image/svg+xml;base64,{{ icon_speed }}"></div>
+            <div class="content flex flex--row flex--center-y gap--small w--full">
+              <span class="label label--small grow">Avg Speed</span>
+              <span class="value value--small value--tnums">{% if most_recent.averageSpeed %}{{ most_recent.averageSpeed }}{% else %}—{% endif %}</span>
+            </div>
           </div>
         </div>
       {% else %}
@@ -33,33 +42,33 @@
 
     <div class="col--span-7 flex flex--col gap--small">
       <span class="label label--filled no-shrink">THIS WEEK · {{ week_range }}</span>
-      {% if has_weekly %}
-        <table class="table table--small" data-table-limit="true">
-          <thead>
+      <table class="table table--small" data-table-limit="true">
+        <thead>
+          <tr>
+            <th class="pr--3"><span class="label label--small">DAY</span></th>
+            <th><span class="label label--small">RIDE</span></th>
+            <th><span class="label label--small">DIST</span></th>
+            <th><span class="label label--small">TIME</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for day in weekly.days %}
             <tr>
-              <th class="pr--3"><span class="label label--small">DAY</span></th>
-              <th><span class="label label--small">RIDE</span></th>
-              <th><span class="label label--small">DIST</span></th>
-              <th><span class="label label--small">TIME</span></th>
+              <td class="pr--3 py--1"><span class="label label--small text--gray-25">{{ day.dayLabel }}</span></td>
+              {% if day.hasRide %}
+                <td class="py--1"><span class="label label--small">{{ day.name | truncate: 20 }}</span></td>
+                <td class="py--1"><span class="label label--small">{{ day.distance }}</span></td>
+                <td class="py--1"><span class="label label--small">{{ day.movingTime }}</span></td>
+              {% else %}
+                <td class="py--1"><span class="label label--small text--gray-25">—</span></td>
+                <td class="py--1"><span class="label label--small text--gray-25">—</span></td>
+                <td class="py--1"><span class="label label--small text--gray-25">—</span></td>
+              {% endif %}
             </tr>
-          </thead>
-          <tbody>
-            {% for ride in weekly.rides limit: 7 %}
-              <tr>
-                <td class="pr--3 py--1"><span class="value value--xsmall value--tnums">{{ ride.startDateLocal | date: "%a" }}</span></td>
-                <td class="py--1"><span class="label label--small">{{ ride.name | truncate: 20 }}</span></td>
-                <td class="py--1"><span class="label label--small text--gray-25">{{ ride.distance }}</span></td>
-                <td class="py--1"><span class="label label--small text--gray-25">{{ ride.movingTime }}</span></td>
-              </tr>
-            {% endfor %}
-          </tbody>
-        </table>
-        <span class="label label--small label--gray">{{ weekly.rideCount }} ride{% if weekly.rideCount != 1 %}s{% endif %} · {{ weekly.distance }} · {{ weekly.movingTime }} · {{ weekly.elevationGain }} gain</span>
-      {% else %}
-        <div class="flex flex--row flex--center h--full w--full">
-          <span class="label label--gray">No rides logged yet this week</span>
-        </div>
-      {% endif %}
+          {% endfor %}
+        </tbody>
+      </table>
+      <span class="label label--small label--gray">{{ weekly.rideCount }} ride{% if weekly.rideCount != 1 %}s{% endif %} · {{ weekly.distance }} · {{ weekly.movingTime }} · {{ weekly.elevationGain }} gain</span>
     </div>
   </div>
 
