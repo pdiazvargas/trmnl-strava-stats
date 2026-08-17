@@ -1,0 +1,18 @@
+<div class="layout layout--col layout--center gap--xsmall text--center">
+
+  <span class="label label--gray label--small">THIS WEEK</span>
+
+  {% if has_weekly %}
+    <span class="title title--base">{{ weekly.distance }}</span>
+    <span class="label label--small">{{ weekly.rideCount }} ride{% if weekly.rideCount != 1 %}s{% endif %}</span>
+  {% else %}
+    <span class="label label--gray">No rides yet</span>
+  {% endif %}
+
+  {% if has_most_recent %}
+    <span class="label label--small label--gray">LAST · {{ most_recent.distance }} · {{ most_recent_date_label }}</span>
+  {% endif %}
+
+</div>
+
+{{ title_bar_compact }}

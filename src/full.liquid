@@ -1,0 +1,68 @@
+<div class="layout layout--col gap--small">
+
+  <div class="grid grid--cols-12 gap portrait:grid--cols-1 portrait:gap--small">
+    <div class="col--span-5 flex flex--col gap--small">
+      <span class="label label--filled no-shrink">LAST RIDE</span>
+      {% if has_most_recent %}
+        <div class="flex flex--col gap--xsmall">
+          <span class="title title--small">{{ most_recent.name | truncate: 28 }}</span>
+          <span class="label label--small label--gray">{{ most_recent_date_label }}</span>
+        </div>
+        <div class="grid grid--cols-2 gap--small">
+          <div class="flex flex--col">
+            <span class="value value--medium value--tnums">{{ most_recent.distance }}</span>
+            <span class="label label--small label--gray">DISTANCE</span>
+          </div>
+          <div class="flex flex--col">
+            <span class="value value--medium value--tnums">{{ most_recent.movingTime }}</span>
+            <span class="label label--small label--gray">TIME</span>
+          </div>
+          <div class="flex flex--col">
+            <span class="value value--medium value--tnums">{{ most_recent.elevationGain }}</span>
+            <span class="label label--small label--gray">ELEV GAIN</span>
+          </div>
+          <div class="flex flex--col">
+            <span class="value value--medium value--tnums">{% if most_recent.averageSpeed %}{{ most_recent.averageSpeed }}{% else %}—{% endif %}</span>
+            <span class="label label--small label--gray">AVG SPEED</span>
+          </div>
+        </div>
+      {% else %}
+        {{ no_rides_empty_state }}
+      {% endif %}
+    </div>
+
+    <div class="col--span-7 flex flex--col gap--small">
+      <span class="label label--filled no-shrink">THIS WEEK · {{ week_range }}</span>
+      {% if has_weekly %}
+        <table class="table table--small" data-table-limit="true">
+          <thead>
+            <tr>
+              <th class="pr--3"><span class="label label--small">DAY</span></th>
+              <th><span class="label label--small">RIDE</span></th>
+              <th><span class="label label--small">DIST</span></th>
+              <th><span class="label label--small">TIME</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for ride in weekly.rides limit: 7 %}
+              <tr>
+                <td class="pr--3 py--1"><span class="value value--xsmall value--tnums">{{ ride.startDateLocal | date: "%a" }}</span></td>
+                <td class="py--1"><span class="label label--small">{{ ride.name | truncate: 20 }}</span></td>
+                <td class="py--1"><span class="label label--small text--gray-25">{{ ride.distance }}</span></td>
+                <td class="py--1"><span class="label label--small text--gray-25">{{ ride.movingTime }}</span></td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        <span class="label label--small label--gray">{{ weekly.rideCount }} ride{% if weekly.rideCount != 1 %}s{% endif %} · {{ weekly.distance }} · {{ weekly.movingTime }} · {{ weekly.elevationGain }} gain</span>
+      {% else %}
+        <div class="flex flex--row flex--center h--full w--full">
+          <span class="label label--gray">No rides logged yet this week</span>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+
+</div>
+
+{{ title_bar }}

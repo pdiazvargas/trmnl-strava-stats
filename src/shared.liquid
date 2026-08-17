@@ -1,0 +1,58 @@
+{%- comment -%}
+  Shared computed variables for all Strava Stats view sizes. `mostRecent` =
+  most recent ride, `weekly` = Mon–Sun cycling summary. Both come straight
+  from transform.js's return value, which TRMNL merges in as top-level
+  variables; the `| default: data.x` fallback covers the (unlikely) case it
+  instead nests them under a top-level `data` key.
+{%- endcomment -%}
+
+{%- assign most_recent = mostRecent | default: data.mostRecent -%}
+{%- assign has_most_recent = hasMostRecent | default: data.hasMostRecent -%}
+{%- assign weekly = weekly | default: data.weekly -%}
+{%- assign has_weekly = hasWeekly | default: data.hasWeekly -%}
+
+{%- assign week_range = "" -%}
+{%- if weekly.mondayDate and weekly.sundayDate -%}
+  {%- assign monday_label = weekly.mondayDate | date: "%b %-d" -%}
+  {%- assign sunday_label = weekly.sundayDate | date: "%b %-d" -%}
+  {%- assign week_range = monday_label | append: " – " | append: sunday_label -%}
+{%- endif -%}
+
+{%- assign most_recent_date_label = "" -%}
+{%- if most_recent.startDateLocal -%}
+  {%- assign most_recent_date_label = most_recent.startDateLocal | date: "%b %-d" -%}
+{%- endif -%}
+
+{%- comment -%}
+  Inline SVG mark for the title_bar icon — simple bike silhouette (two
+  wheels + frame), single black stroke, 24x24, matching the sibling Vuelta
+  plugins' minimalist style.
+{%- endcomment -%}
+{%- capture title_bar_icon_svg -%}<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="5" cy="17" r="3" fill="none" stroke="#000" stroke-width="1.8"/><circle cx="19" cy="17" r="3" fill="none" stroke="#000" stroke-width="1.8"/><path fill="none" stroke="#000" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M5 17 10 8h6M10 8l3 9M13 17h6M16 8l3 9M8 5h3"/></svg>{%- endcapture -%}
+{%- assign title_bar_icon = title_bar_icon_svg | base64_encode -%}
+
+{%- capture title_bar -%}
+<div class="title_bar">
+  <img class="image" src="data:image/svg+xml;base64,{{ title_bar_icon }}">
+  <span class="title">Strava Stats</span>
+  <span class="instance">{% if has_most_recent %}Last ride · {{ most_recent_date_label }}{% else %}No recent rides{% endif %}</span>
+</div>
+{%- endcapture -%}
+
+{%- capture title_bar_compact -%}
+<div class="title_bar">
+  <img class="image" src="data:image/svg+xml;base64,{{ title_bar_icon }}">
+  <span class="title">Strava Stats</span>
+  <span class="instance">{% if has_weekly %}{{ weekly.rideCount }} ride{% if weekly.rideCount != 1 %}s{% endif %} this week{% else %}This week{% endif %}</span>
+</div>
+{%- endcapture -%}
+
+{%- comment -%}
+  Shared "no rides" empty state for the sizes with identical copy
+  (full.liquid keeps its own, slightly different, per-section messages).
+{%- endcomment -%}
+{%- capture no_rides_empty_state -%}
+<div class="flex flex--row flex--center h--full w--full">
+  <span class="label label--gray">No rides yet — check back after your next ride</span>
+</div>
+{%- endcapture -%}

@@ -1,0 +1,39 @@
+<div class="layout layout--col gap--small">
+
+  <div class="grid grid--cols-12 gap--small">
+    <div class="col--span-5 flex flex--col flex--center-y gap--xsmall">
+      <span class="label label--gray label--small">LAST RIDE</span>
+      {% if has_most_recent %}
+        <span class="title title--small">{{ most_recent.distance }}</span>
+        <span class="label label--small label--gray">{{ most_recent_date_label }} · {{ most_recent.movingTime }}</span>
+      {% else %}
+        <span class="label label--gray">No rides yet</span>
+      {% endif %}
+    </div>
+
+    <div class="col--span-7 flex flex--col gap--xsmall">
+      <span class="label label--small label--gray">THIS WEEK</span>
+      {% if has_weekly %}
+        <div class="grid grid--cols-3 gap--small">
+          <div class="flex flex--col">
+            <span class="value value--small value--tnums">{{ weekly.rideCount }}</span>
+            <span class="label label--small label--gray">RIDES</span>
+          </div>
+          <div class="flex flex--col">
+            <span class="value value--small value--tnums">{{ weekly.distance }}</span>
+            <span class="label label--small label--gray">DISTANCE</span>
+          </div>
+          <div class="flex flex--col">
+            <span class="value value--small value--tnums">{{ weekly.elevationGain }}</span>
+            <span class="label label--small label--gray">ELEV GAIN</span>
+          </div>
+        </div>
+      {% else %}
+        <span class="label label--gray">No rides logged yet</span>
+      {% endif %}
+    </div>
+  </div>
+
+</div>
+
+{{ title_bar }}

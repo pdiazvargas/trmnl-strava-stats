@@ -1,0 +1,5 @@
+# trmnlp build output
+_build/
+
+# Claude Code local settings
+.claude/

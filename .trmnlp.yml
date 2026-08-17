@@ -1,0 +1,57 @@
+# TRMNLP configuration
+# {{ env.VARIABLE }} interpolation is available here
+---
+# auto-reload when files change (`watch: false` to disable)
+watch:
+  - .trmnlp.yml
+  - src
+
+# values of custom fields (defined in src/settings.yml)
+custom_fields:
+  distance_unit: Miles
+
+# override variables — mock Strava data shaped like transform.js's return
+# value, so `trmnlp serve` renders something meaningful without needing a
+# live OAuth connection during local preview.
+variables:
+  trmnl: {}
+  hasMostRecent: true
+  mostRecent:
+    id: 1
+    name: Morning Ride
+    startDateLocal: '2026-08-15T07:28:37'
+    distance: 38.6 mi
+    movingTime: 2h 13m
+    elevationGain: 2142 ft
+    averageSpeed: 17.5 mph
+    averageWatts: 149
+    kudos: 7
+    achievementCount: 4
+  hasWeekly: true
+  weekly:
+    rideCount: 3
+    distance: 97.2 mi
+    movingTime: 5h 24m
+    elevationGain: 4200 ft
+    mondayDate: '2026-08-10'
+    sundayDate: '2026-08-16'
+    rides:
+      - id: 1
+        name: Morning Ride
+        startDateLocal: '2026-08-15T07:28:37'
+        distance: 38.6 mi
+        movingTime: 2h 13m
+        elevationGain: 2142 ft
+      - id: 2
+        name: Morning Ride
+        startDateLocal: '2026-08-14T10:19:07'
+        distance: 30.1 mi
+        movingTime: 1h 40m
+        elevationGain: 1223 ft
+      - id: 3
+        name: Morning Ride
+        startDateLocal: '2026-08-12T10:43:29'
+        distance: 28.5 mi
+        movingTime: 1h 31m
+        elevationGain: 860 ft
+  distanceUnit: Miles
