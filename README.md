@@ -4,6 +4,8 @@
 
 A [TRMNL](https://usetrmnl.com) private plugin that shows your most recent ride and a Monday–Sunday weekly cycling summary, pulled from [Strava](https://www.strava.com). Rides only — no runs, swims, or other activity types. Sibling to the [`vuelta-a-espana-classification`](../vuelta-a-espana-classification) and [`vuelta-a-espana-stages`](../vuelta-a-espana-stages) plugins.
 
+![Full layout preview](docs/screenshot-full.png)
+
 ## How it works
 
 TRMNL polls `GET https://www.strava.com/api/v3/athlete/activities?per_page=30` with `Authorization: Bearer {{ oauth_access_token }}` (OAuth2, standard Strava endpoints — `/oauth/authorize` + `/oauth/token`, scopes `read,activity:read_all`). `src/transform.js` then shrinks that raw response down to just the most recent ride and the current Mon–Sun weekly totals, since a full activities page can exceed TRMNL's 100kb direct-merge cap on its own — see [Parsing plugins with the sandbox runtime](https://help.trmnl.com/en/articles/12996946-parsing-plugins-with-the-sandbox-runtime). The four Liquid templates in `src/` render that shaped data. No separate backend required.
