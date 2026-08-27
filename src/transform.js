@@ -195,11 +195,11 @@ async function run(input) {
     { distanceMeters: 0, movingSeconds: 0, elevationMeters: 0 }
   );
 
-  // One slot per Mon–Sun calendar day (Sunday first, matching the
-  // most-recent-first ordering used everywhere else), so the weekly table
-  // always shows all 7 days — including rest days — rather than only the
-  // days a ride happened. A day with more than one ride collapses into a
-  // single combined row rather than expanding the table past 7 rows.
+  // One slot per Mon–Sun calendar day, in calendar order (Monday first),
+  // matching the Mon–Sun week_range label, so the weekly table always shows
+  // all 7 days — including rest days — rather than only the days a ride
+  // happened. A day with more than one ride collapses into a single
+  // combined row rather than expanding the table past 7 rows.
   const ridesByDate = {};
   for (const a of weekRides) {
     const key = String(a.start_date_local).slice(0, 10);
@@ -207,7 +207,7 @@ async function run(input) {
   }
 
   const days = [];
-  for (let offset = 6; offset >= 0; offset--) {
+  for (let offset = 0; offset <= 6; offset++) {
     const [y, m, d] = mondayKey.split("-").map(Number);
     const dayDate = new Date(Date.UTC(y, m - 1, d + offset, 12));
     const dateKey = dateKeyInZone(dayDate, "Etc/UTC");
