@@ -123,9 +123,17 @@ async function run(input) {
     return meters * 3.28084;
   }
 
+  // Raw distance in the display unit, rounded to the same precision
+  // `formatDistance` prints — so a day's bar-chart width (computed from this
+  // in the Liquid templates) always agrees with its printed distance label.
+  function distanceValue(meters, unit) {
+    const raw = unit === "Kilometers" ? meters / 1000 : metersToMiles(meters);
+    return Math.round(raw * 10) / 10;
+  }
+
   function formatDistance(meters, unit) {
-    if (unit === "Kilometers") return `${(meters / 1000).toFixed(1)} km`;
-    return `${metersToMiles(meters).toFixed(1)} mi`;
+    if (unit === "Kilometers") return `${distanceValue(meters, unit).toFixed(1)} km`;
+    return `${distanceValue(meters, unit).toFixed(1)} mi`;
   }
 
   function formatElevation(meters, unit) {
@@ -215,7 +223,7 @@ async function run(input) {
     const dayActivities = ridesByDate[dateKey] || [];
 
     if (dayActivities.length === 0) {
-      days.push({ dayLabel, hasRide: false, name: null, distance: null, movingTime: null });
+      days.push({ dayLabel, hasRide: false, name: null, distance: null, distanceValue: 0, movingTime: null });
       continue;
     }
 
@@ -233,6 +241,7 @@ async function run(input) {
       hasRide: true,
       name: dayActivities.length === 1 ? sanitizeString(dayActivities[0].name, "Ride") : `${dayActivities.length} rides`,
       distance: formatDistance(dayTotals.distanceMeters, distanceUnit),
+      distanceValue: distanceValue(dayTotals.distanceMeters, distanceUnit),
       movingTime: formatDuration(dayTotals.movingSeconds)
     });
   }

@@ -54,7 +54,7 @@
 <div class="title_bar">
   <img class="image" src="data:image/svg+xml;base64,{{ title_bar_icon }}">
   <span class="title">Strava Stats</span>
-  <span class="instance">{% if has_most_recent %}Last ride · {{ most_recent_date_label }}{% else %}No recent rides{% endif %}</span>
+  <span class="instance">{{ "now" | date: "%b %-d" }}</span>
 </div>
 {%- endcapture -%}
 
